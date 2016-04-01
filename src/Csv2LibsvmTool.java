@@ -9,6 +9,11 @@ public class Csv2LibsvmTool {
 		BufferedReader br = Util.readFile(in);
 		PrintWriter pt = Util.writeFile(out);
 		String f_name[] = br.readLine().split(",");
+		int name[]=new int[f_name.length];
+		for(int i=0;i<name.length;i++)
+		{
+			name[i]=i;
+		}
 		String line = "";
 		int classIndex = ClassIndex.equals("last") ? (f_name.length - 1) : 0;
 		if (classIndex == 0) {
@@ -16,7 +21,7 @@ public class Csv2LibsvmTool {
 				String t[] = line.split(",");
 				StringBuffer sb = new StringBuffer(t[classIndex]);
 				for (int i = 1; i < t.length; i++) {
-					sb.append(" " + f_name[i] + ":" + t[i]);
+					sb.append(" " + name[i] + ":" + t[i]);
 				}
 				pt.println(sb.toString());
 			}
@@ -25,7 +30,7 @@ public class Csv2LibsvmTool {
 				String t[] = line.split(",");
 				StringBuffer sb = new StringBuffer(t[classIndex]);
 				for (int i = 0; i < classIndex; i++) {
-					sb.append(" " + f_name[i] + ":" + t[i]);
+					sb.append(" " + name[i] + ":" + t[i]);
 				}
 				pt.println(sb.toString());
 			}
